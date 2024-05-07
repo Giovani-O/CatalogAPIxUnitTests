@@ -1,4 +1,5 @@
 ﻿using CatalogAPI.Controllers;
+using CatalogAPI.DTOs;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,9 +21,12 @@ public class GetProductUnitTests : IClassFixture<ProductsUnitTestController>
         _controller = new ProductsController(controller.repository, controller.mapper);
     }
 
+    /// <summary>
+    /// Testa resultado OK na busca por ID
+    /// </summary>
     // Testes de unidade usam a annotation [Fact]
     [Fact]
-    public async Task GetProductById_Okresult()
+    public async Task GetProductById_OkResult()
     {
         // Arrange
         var productId = 2;
@@ -38,5 +42,60 @@ public class GetProductUnitTests : IClassFixture<ProductsUnitTestController>
         data.Result.Should()
             .BeOfType<OkObjectResult>()
             .Which.StatusCode.Should().Be(200);
+    }
+
+    /// <summary>
+    /// Testa resultado NotFould na busca por Id
+    /// </summary>
+    [Fact]
+    public async Task GetproductById_NotFound()
+    {
+        var productId = 9999;
+
+        var data = await _controller.Get(productId);
+
+        data.Result.Should()
+            .BeOfType<NotFoundObjectResult>()
+            .Which.StatusCode.Should().Be(404);
+    }
+
+    /// <summary>
+    /// Testa resultado BadRequest na busca por Id
+    /// </summary>
+    [Fact]
+    public async Task GetProductById_BadRequest()
+    {
+        var productId = -1;
+
+        var data = await _controller.Get(productId);
+
+        data.Result.Should()
+            .BeOfType<BadRequestObjectResult>()
+            .Which.StatusCode.Should().Be(400);
+    }
+
+    /// <summary>
+    /// Testa tipo de retorno na busca de todos os produtos
+    /// </summary>
+    [Fact]
+    public async Task GetProducts_Return_ListOfProductsDTO()
+    {
+        var data = await _controller.Get();
+
+        data.Result.Should().BeOfType<OkObjectResult>()
+            .Which.Value.Should().BeAssignableTo<IEnumerable<ProductDTO>>()
+            .And.NotBeNull();
+    }
+
+    /// <summary>
+    /// Testa resultado BadRequest na busca de todos os produtos
+    /// </summary>
+    /// <returns></returns>
+    [Fact]
+    public async Task GetProducts_Return_BadRequest()
+    {
+        var data = await _controller.Get();
+
+        data.Result.Should().BeOfType<BadRequestResult>();
     }
 }

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CatalogAPIxUnitTests</name>
+    </assembly>
+    <members>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.GetProductUnitTests.GetProductById_OkResult">
+            <summary>
+            Testa resultado OK na busca por ID
+            </summary>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.GetProductUnitTests.GetproductById_NotFound">
+            <summary>
+            Testa resultado NotFould na busca por Id
+            </summary>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.GetProductUnitTests.GetProductById_BadRequest">
+            <summary>
+            Testa resultado BadRequest na busca por Id
+            </summary>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.GetProductUnitTests.GetProducts_Return_ListOfProductsDTO">
+            <summary>
+            Testa tipo de retorno na busca de todos os produtos
+            </summary>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.GetProductUnitTests.GetProducts_Return_BadRequest">
+            <summary>
+            Testa resultado BadRequest na busca de todos os produtos
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
