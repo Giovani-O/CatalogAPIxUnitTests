@@ -11,11 +11,11 @@ using System.Threading.Tasks;
 
 namespace CatalogAPIxUnitTests.UnitTests
 {
-    internal class ProductsUnitTestController
+    public class ProductsUnitTestController
     {
         // Definição de variáveis
-        private IUnitOfWork repository;
-        private IMapper mapper;
+        public IUnitOfWork repository;
+        public IMapper mapper;
 
         public static DbContextOptions<AppDbContext> dbContextOptions { get; }
 
