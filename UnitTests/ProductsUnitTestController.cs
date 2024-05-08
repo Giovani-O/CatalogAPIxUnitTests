@@ -9,44 +9,43 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogAPIxUnitTests.UnitTests
+namespace CatalogAPIxUnitTests.UnitTests;
+
+public class ProductsUnitTestController
 {
-    public class ProductsUnitTestController
+    // Definição de variáveis
+    public IUnitOfWork repository;
+    public IMapper mapper;
+
+    public static DbContextOptions<AppDbContext> dbContextOptions { get; }
+
+    // Connection string
+    public static string connectionString = 
+        "Server=localhost;Database=catalogdb;Uid=root;Pwd=1234";
+
+    // Construtores
+    static ProductsUnitTestController()
     {
-        // Definição de variáveis
-        public IUnitOfWork repository;
-        public IMapper mapper;
-
-        public static DbContextOptions<AppDbContext> dbContextOptions { get; }
-
-        // Connection string
-        public static string connectionString = 
-            "Server=localhost;Database=catalogdb;Uid=root;Pwd=1234";
-
-        // Construtores
-        static ProductsUnitTestController()
-        {
-            dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
-                .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
-                .Options;
-        }
-
-        // Construtor padrão
-        public ProductsUnitTestController()
-        {
-            // Mapper setup
-            var config = new MapperConfiguration(config =>
-            {
-                config.AddProfile(new ProductDTOMappingProfile());
-            });
-            mapper = config.CreateMapper();
-
-            // Context setup
-            var context = new AppDbContext(dbContextOptions);
-
-            // Repository setup
-            repository = new UnitOfWork(context);
-        }
-
+        dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
+            .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
+            .Options;
     }
+
+    // Construtor padrão
+    public ProductsUnitTestController()
+    {
+        // Mapper setup
+        var config = new MapperConfiguration(config =>
+        {
+            config.AddProfile(new ProductDTOMappingProfile());
+        });
+        mapper = config.CreateMapper();
+
+        // Context setup
+        var context = new AppDbContext(dbContextOptions);
+
+        // Repository setup
+        repository = new UnitOfWork(context);
+    }
+
 }

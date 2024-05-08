@@ -34,7 +34,16 @@
             <summary>
             Testa resultado CreatedAtRoute na criação de produtos
             </summary>
-            <returns></returns>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.PostProductUnitTests.PostProduct_Return_BadRequest">
+            <summary>
+            Testa resultado BadRequest na criação de produtos
+            </summary>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.PutProductUnitTests.PutProduct_Return_OkResult">
+            <summary>
+            Testa resultado OkResult na edição de produtos
+            </summary>
         </member>
     </members>
 </doc>

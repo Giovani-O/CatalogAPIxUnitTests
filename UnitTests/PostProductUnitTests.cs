@@ -8,51 +8,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CatalogAPIxUnitTests.UnitTests
+namespace CatalogAPIxUnitTests.UnitTests;
+
+public class PostProductUnitTests : IClassFixture<ProductsUnitTestController>
 {
-    public class PostProductUnitTests : IClassFixture<ProductsUnitTestController>
+    private readonly ProductsController _controller;
+
+    public PostProductUnitTests(ProductsUnitTestController controller)
     {
-        private readonly ProductsController _controller;
+        _controller = new ProductsController(controller.repository, controller.mapper);
+    }
 
-        public PostProductUnitTests(ProductsUnitTestController controller)
+    /// <summary>
+    /// Testa resultado CreatedAtRoute na criação de produtos
+    /// </summary>
+    [Fact]
+    public async Task PostProduct_Return_CreatedStatusCode()
+    {
+        // Arrange
+        var newProduct = new ProductDTO
         {
-            _controller = new ProductsController(controller.repository, controller.mapper);
-        }
+            Name = "Novo produto",
+            Description = "Description...",
+            Price = 10.99m,
+            ImageUrl = "image.jpg",
+            CategoryId = 3,
+        };
 
-        /// <summary>
-        /// Testa resultado CreatedAtRoute na criação de produtos
-        /// </summary>
-        /// <returns></returns>
-        [Fact]
-        public async Task PostProduct_Return_CreatedStatusCode()
-        {
-            // Arrange
-            var newProduct = new ProductDTO
-            {
-                Name = "Novo produto",
-                Description = "Description...",
-                Price = 10.99m,
-                ImageUrl = "image.jpg",
-                CategoryId = 3,
-            };
+        // Act
+        var data = await _controller.Post(newProduct);
 
-            // Act
-            var data = await _controller.Post(newProduct);
+        // Assert
+        var createdResult = data.Result.Should().BeOfType<CreatedAtRouteResult>();
+        createdResult.Subject.StatusCode.Should().Be(201);
+    }
 
-            // Assert
-            var createdResult = data.Result.Should().BeOfType<CreatedAtRouteResult>();
-            createdResult.Subject.StatusCode.Should().Be(201);
-        }
+    /// <summary>
+    /// Testa resultado BadRequest na criação de produtos
+    /// </summary>
+    [Fact]
+    public async Task PostProduct_Return_BadRequest()
+    {
+        ProductDTO product = null;
 
-        [Fact]
-        public async Task PostProduct_Return_BadRequest()
-        {
-            ProductDTO product = null;
+        var data = await _controller.Post(product);
 
-            var data = await _controller.Post(product);
-
-            var badRequestResult = data.Result.Should().BeOfType<BadRequestResult>();
-            badRequestResult.Subject.StatusCode.Should().Be(400);
-        }
+        var badRequestResult = data.Result.Should().BeOfType<BadRequestResult>();
+        badRequestResult.Subject.StatusCode.Should().Be(400);
     }
 }
