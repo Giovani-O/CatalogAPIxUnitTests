@@ -30,5 +30,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.PostProductUnitTests.PostProduct_Return_CreatedStatusCode">
+            <summary>
+            Testa resultado CreatedAtRoute na criação de produtos
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>
