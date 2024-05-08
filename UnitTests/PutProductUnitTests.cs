@@ -43,6 +43,9 @@ public class PutProductUnitTests : IClassFixture<ProductsUnitTestController>
         result.Result.Should().BeOfType<OkObjectResult>();
     }
 
+    /// <summary>
+    /// Testa resultado BadRequest na ed
+    /// </summary>
     [Fact]
     public async Task PutProduct_Return_BadRequest()
     {

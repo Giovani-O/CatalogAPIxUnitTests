@@ -4,6 +4,17 @@
         <name>CatalogAPIxUnitTests</name>
     </assembly>
     <members>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.DeleteProductUnitTests.DeleteProduct_Result_OkResult">
+            <summary>
+            Testa resultado OkResult ao excluir um produto
+            </summary>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.DeleteProductUnitTests.DeleteProduct_Result_BadRequest">
+            <summary>
+            Testa resultado BadRequest ao excluir um produto
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:CatalogAPIxUnitTests.UnitTests.GetProductUnitTests.GetProductById_OkResult">
             <summary>
             Testa resultado OK na busca por ID
@@ -43,6 +54,11 @@
         <member name="M:CatalogAPIxUnitTests.UnitTests.PutProductUnitTests.PutProduct_Return_OkResult">
             <summary>
             Testa resultado OkResult na edição de produtos
+            </summary>
+        </member>
+        <member name="M:CatalogAPIxUnitTests.UnitTests.PutProductUnitTests.PutProduct_Return_BadRequest">
+            <summary>
+            Testa resultado BadRequest na ed
             </summary>
         </member>
     </members>
