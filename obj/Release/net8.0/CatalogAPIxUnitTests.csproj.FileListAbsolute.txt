@@ -147,3 +147,4 @@ C:\github\CatalogAPIxUnitTests\obj\Release\net8.0\CatalogAPIxUnitTests.xml
 C:\github\CatalogAPIxUnitTests\obj\Release\net8.0\CatalogAPIxUnitTests.pdb
 C:\github\CatalogAPIxUnitTests\obj\Release\net8.0\CatalogAPIxUnitTests.genruntimeconfig.cache
 C:\github\CatalogAPIxUnitTests\obj\Release\net8.0\ref\CatalogAPIxUnitTests.dll
+C:\github\CatalogAPIxUnitTests\bin\Release\net8.0\web.config
